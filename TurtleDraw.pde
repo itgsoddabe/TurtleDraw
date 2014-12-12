@@ -1,20 +1,132 @@
 Turtle t;
 color bgColor = #000000;
+int width = 800;
+int height = 800;
  
 void setup() {
-    size(260,260);
+    size(width, height);
     frameRate(60);
     noStroke();
     smooth();
     background(bgColor);
-    t = new Turtle(width / 2, height);
+    t = new Turtle(width / 2, height / 2);
     drawing();
 }
 
 void drawing() {
-   //drawPlus(10);
-   snowFlake(300,4);
+   //drawPlus(100);
+   //snowFlake(800,5);
+   //draw_square_spiral(3);
+   draw_star_spiral(20);
+   //draw_star(300);
+   //draw_itg();
+   
  }
+
+void draw() {
+  for(int i = 0; i < 20; i++) {
+    t.draw();
+  }
+}
+
+void draw_star_spiral(int size) {
+  t.right(30);
+  for (int outer = 1; outer < 300; outer++){
+    for(int i = 0; i < 6; i++) {
+      t.forward(outer * 10);
+      t.right(120);
+      t.forward(outer * 10);
+      t.left(60);
+    }
+    t.pencolor(60);
+    t.left(60);
+    t.forward(size / 2);
+    t.right(60);
+    t.pencolor(color(int(random(255)), int(random(255)), int(random(255))));
+    t.pendown();
+  }
+  
+}
+
+void draw_itg() {
+  for (int i = 0; i < 2; i++ ) {
+    t.forward(100);
+    t.right(90);
+    t.forward(10);
+    t.right(90);
+  }
+  t.penup();
+  t.right(90);
+  t.forward(60);
+  t.left(90);
+  t.pendown();
+  t.forward(90);
+  t.left(90);
+  t.forward(40);
+  t.right(90);
+  t.forward(10);
+  t.right(90);
+  t.forward(90);
+  t.right(90);
+  t.forward(10);
+  t.right(90);
+  t.forward(40);
+  t.left(90);
+  t.forward(90);
+  t.right(90);
+  t.forward(10);
+
+  t.right(180);
+  t.penup();
+  t.forward(110);
+  t.pendown();
+  t.right(180);
+  for (int i = 0; i < 17; i++) {
+    t.forward(9);
+    t.right(10);
+  }
+  t.right(10);
+  t.forward(20);
+  t.right(90);
+  t.forward(10);
+  t.right(90);
+  for (int i = 0; i < 16; i++) {
+    t.forward(9);
+    t.left(12);
+  }
+  t.left(78);
+  t.forward(40);
+  t.left(90);
+  t.forward(10);
+  t.right(90);
+  t.forward(10);
+  t.right(90);
+  t.forward(20);
+  t.right(90);
+  t.forward(56);
+  t.right(90);
+  t.forward(20);
+  
+
+}
+
+
+void draw_star(int size){
+  for(int i = 0; i < 1000; i++) {
+    t.pencolor(color(int(random(255)), int(random(255)), int(random(255))));
+    t.forward(size);
+    t.right(173); 
+  }
+}
+
+void draw_square_spiral(int distance) {
+  for (int outer = 1; outer < 1000; outer++) {
+    for(int inner = 0; inner < 2; inner++) {
+      t.forward(outer * distance);
+      t.right(90);
+    }
+  }
+}
 
 void snowFlake(int length, int depth) {
   if (depth == 0) {
@@ -41,11 +153,7 @@ void drawPlus(int size) {
   }
 }
 
-void draw() {
-    t.draw();
-}
 
- 
  
 class Turtle {
     float x,y;
